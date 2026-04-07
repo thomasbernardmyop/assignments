@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trending</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+ <!-- website created by Thomas Bernard for assessment 3 -->
+    <nav>
+        <div class="navbar">
+        <img src="images/sitelogo.png" alt="site logo" class="logo" width="160" height="160">
+        
+      </div> 
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="trending.html">Trending</a></li>
+  </ul>
+  <h1 id="index-title-center" style="color: #ffffff;">
+  Your Shortcut to the best shows and movies right now
+</h1>
+
+  </nav>
+
+  <p>Here are the trending shows and movies right now.</p>
+
+  <div class="wrap">
+    <h2>Latest Blockbusters</h2>
+    <img id="slide" src="images/1.png" alt="slideshow image">
+    <div class="controls">
+      <button onclick="prev()">Previous</button>
+      <button onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <script>
+  const images = [
+    "images/1.png",
+    "images/2.png",
+    "images/3.png",
+    "images/4.png",
+    "images/5.png",
+  ];
+
+  const altTexts = [
+    "Raven Movie",
+    "coming soon october 2028 ",
+    "Thomas the radio",
+    "fellow our heart",
+    "A Summer Film"
+  ];
+
+  let index = 0;
+  const slide = document.getElementById("slide");
+
+  function show() {
+    slide.src = images[index];
+    slide.alt = altTexts[index];
+  }
+
+  function next() {
+    index++;
+    if (index >= images.length) index = 0;
+    show();
+  }
+
+  function prev() {
+    index--;
+    if (index < 0) index = images.length - 1;
+    show();
+  }
+
+  show();
+
+</script>
+  <footer>
+    <p>Thomas Bernard — 23rd October 2025</p>
+  </footer>
+</body>
+</html>

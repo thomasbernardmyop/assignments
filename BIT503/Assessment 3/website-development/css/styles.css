@@ -1,0 +1,141 @@
+/* Page text and layout */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  padding-bottom: 80px
+}
+
+/* Navigation bar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav ul li a {
+  display: block;
+  color: #fff;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+.site-name {
+  color: white;
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Centered heading */
+#index-title-center {
+  text-align: center;
+}
+
+/* Slideshow area */
+.wrap {
+  max-width: 600px;
+  margin: 80px auto 60px;
+}
+
+#slide {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Smaller buttons on small screens */
+@media (max-width: 500px) {
+  button {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+table.series {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+table.series th,
+table.series td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+table.series th {
+  background-color: #333;
+  color: white;
+}
+
+table.series tr:nth-child(even) {
+  background-color: #eee;
+}
+
+#disclaimer-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+#disclaimer-box button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: #00cc88;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}

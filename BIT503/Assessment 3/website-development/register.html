@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/styles.css" />
+   <script src="js/script.js" defer></script>
+  <title>Register</title>
+</head>
+<body>
+
+ <!-- website created by Thomas Bernard for assessment 3 -->
+    <nav>
+        <div class="navbar">
+        <img src="images/sitelogo.png" alt="site logo" class="logo" width="160" height="160">
+        
+      </div> 
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="trending.html">Trending</a></li>
+  </ul>
+  <h1 id="index-title-center" style="color: #ffffff;">
+  Your Shortcut to the best shows and movies right now
+</h1>
+
+  </nav>
+
+  <main class="container">
+  <h2>Register</h2>
+  <p>Please fill in the form below.</p>
+
+<form action="#" method="post" class="form" autocomplete="on">
+    <!-- First Name -->
+    <div class="field">
+      <label for="firstName">First name</label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        autocomplete="given-name"
+        pattern="[A-Za-z]+"
+        required
+      />
+    </div>
+
+    <!-- Last Name -->
+    <div class="field">
+      <label for="lastName">Last name</label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        autocomplete="family-name"
+        pattern="[A-Za-z]+"
+        required
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="field">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        autocomplete="email"
+        placeholder="e.g. user@gmail.com"
+        title="Please enter a valid email address with @"
+        required
+      />
+    </div>
+
+    <!-- Mobile Number -->
+    <div class="field">
+      <label for="mobile">Mobile number</label>
+      <input
+       type="tel"
+       id="mobile"
+       name="mobile"
+       inputmode="numeric"
+       autocomplete="tel"
+       pattern="[0-9]{9,10}"
+       minlength="9"
+      maxlength="10"
+      placeholder="e.g. 0211234567"
+      title="Please enter 9 to 10 digits, numbers only"
+      required
+/>
+    </div>
+
+    <!-- Password -->
+    <div class="field">
+      <label for="password">Password</label>
+     <input
+     type="password"
+     id="password"
+     name="password"
+     autocomplete="new-password"
+     pattern="(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}"
+     min="6"
+     maxlength="12"
+     title="Password must be 6–12 characters and include at least one letter and one number"
+  required
+/>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="field">
+      <label for="confirmPassword">Confirm password</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        autocomplete="new-password"
+        minlength="6"
+        maxlength="12"
+        required
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn">Register</button>
+  </form>
+</main>
+
+<p id="message"></p>
+
+
+  <footer>
+    <p>Thomas Bernard, 23 October 2025</p>
+  </footer>
+
+</body>
+</html>

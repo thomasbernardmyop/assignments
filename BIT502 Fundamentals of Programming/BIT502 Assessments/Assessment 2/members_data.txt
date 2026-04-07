@@ -1,0 +1,68 @@
+First Name: thomas
+Last Name: bernard
+Address: 2344
+Mobile: 3434
+Membership plan: Premium - $15  ($165.00)
+Extras: Book Rental, Private Area Access, Monthly Booklet, Online ebook Rental
+Payment plan: Annual
+Library card: Yes
+Library card ID: 25896
+
+Extra cost: $324.00
+Total discount: $48.90
+Total cost: $440.10
+Weekly cost: $8.46
+Payment due: $440.10
+---------------------------------------------
+
+First Name: w
+Last Name: e
+Address: 2
+Mobile: 3
+Membership plan: Standard - $10  ($10.00)
+Extras: None
+Payment plan: Monthly
+Library card: No
+Library card ID: ---
+
+Extra cost: $0.00
+Total discount: $0.00
+Total cost: $10.00
+Weekly cost: $2.50
+Payment due: $10.00
+---------------------------------------------
+
+First Name: e
+Last Name: e
+Address: e
+Mobile: 2222212
+Membership plan: Premium - $15  ($165.00)
+Extras: Book Rental, Private Area Access, Monthly Booklet, Online ebook Rental
+Payment plan: Annual
+Library card: Yes
+Library card ID: 23333
+
+Extra cost: $324.00
+Total discount: $48.90
+Total cost: $440.10
+Weekly cost: $8.46
+Payment due: $440.10
+---------------------------------------------
+
+First Name: rt
+Last Name: rt
+Address: \7df
+Mobile: 3332
+Membership plan: Standard - $10  ($110.00)
+Extras: Book Rental, Private Area Access
+Payment plan: Annual
+Library card: Yes
+Library card ID: 44343
+
+Extra cost: $240.00
+Total discount: $35.00
+Total cost: $315.00
+Weekly cost: $6.06
+Payment due: $315.00
+---------------------------------------------
+
