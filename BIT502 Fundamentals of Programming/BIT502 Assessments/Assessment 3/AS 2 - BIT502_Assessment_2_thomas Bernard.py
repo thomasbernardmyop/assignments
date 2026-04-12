@@ -20,26 +20,6 @@ db_path = os.path.join(BASE_DIR, "theauroraarchive_database.db")
 conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
-# Ensure table exists (safe if already created)
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS Memberships (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    First_Name TEXT,
-    Last_Name TEXT,
-    Address TEXT,
-    Mobile TEXT,
-    Membership_Plan TEXT,
-    Payment_Plan TEXT,
-    Extra_Book_Rental INTEGER,
-    Extra_Private_Area INTEGER,
-    Extra_Booklet INTEGER,
-    Extra_Ebook_Rental INTEGER,
-    Has_Library_Card INTEGER,
-    Library_Card_Number TEXT
-)
-""")
-conn.commit()
-
 # ------------------------------
 # Tkinter Setup
 # ------------------------------
@@ -102,100 +82,11 @@ extra4 = tk.BooleanVar(window, False)
 has_library_card = tk.BooleanVar(window, False)
 
 # ------------------------------
-# Live Update
-# ------------------------------
-
-def update_totals(*args):
-    try:
-        calculate()
-    except:
-        pass  # ignore before form is open
-
-def update_totals_key(event):
-    try:
-        calculate()
-    except:
-        pass
-
-membership_plan.trace_add("write", update_totals)
-payment_plan.trace_add("write", update_totals)
-extra1.trace_add("write", update_totals)
-extra2.trace_add("write", update_totals)
-extra3.trace_add("write", update_totals)
-extra4.trace_add("write", update_totals)
-has_library_card.trace_add("write", update_totals)
-
-# ------------------------------
-# Reset Function
-# ------------------------------
-
-def reset_form():
-    entry_first_name.delete(0, END)
-    entry_last_name.delete(0, END)
-    entry_address.delete(0, END)
-    entry_mobile.delete(0, END)
-    entry_library_number.delete(0, END)
-
-    membership_plan.set(plan_standard)
-    payment_plan.set(plan_monthly)
-
-    extra1.set(False)
-    extra2.set(False)
-    extra3.set(False)
-    extra4.set(False)
-
-    has_library_card.set(False)
-
-    label_total_cost_base.config(text="--")
-    label_total_cost_extras.config(text="--")
-    label_total_cost_discount.config(text="--")
-    label_total_cost_total.config(text="--")
-    label_total_cost_weekly.config(text="--")
-
-    entry_first_name.config(bg="white")
-    entry_last_name.config(bg="white")
-    entry_address.config(bg="white")
-    entry_mobile.config(bg="white")
-    entry_library_number.config(bg="white")
-
-    global membership_cost, extras_cost, discount, total_cost, weekly_cost
-    membership_cost = 0
-    extras_cost = 0
-    discount = 0
-    total_cost = 0
-    weekly_cost = 0
-
-# ------------------------------
 # Calculate Function
 # ------------------------------
 
 def calculate():
     global membership_cost, extras_cost, discount, total_cost, weekly_cost
-
-    # Red error highlighting (live)
-    entry_first_name.config(bg="white")
-    entry_last_name.config(bg="white")
-    entry_address.config(bg="white")
-    entry_mobile.config(bg="white")
-    entry_library_number.config(bg="white")
-
-    if entry_first_name.get().strip() == "":
-        entry_first_name.config(bg="misty rose")
-
-    if entry_last_name.get().strip() == "":
-        entry_last_name.config(bg="misty rose")
-
-    if entry_address.get().strip() == "":
-        entry_address.config(bg="misty rose")
-
-    mobile_val = entry_mobile.get().strip()
-    if mobile_val == "" or not mobile_val.isdigit():
-        entry_mobile.config(bg="misty rose")
-
-    if has_library_card.get():
-        card_val = entry_library_number.get().strip()
-        if card_val == "" or not (card_val.isdigit() and len(card_val) == 5):
-            entry_library_number.config(bg="misty rose")
 
     # Base membership cost
     if membership_plan.get() == plan_standard:
@@ -242,6 +133,33 @@ def calculate():
     label_total_cost_weekly.config(text=f"${weekly_cost:.2f}")
 
 # ------------------------------
+# Reset Function
+# ------------------------------
+
+def reset_form():
+    entry_first_name.delete(0, END)
+    entry_last_name.delete(0, END)
+    entry_address.delete(0, END)
+    entry_mobile.delete(0, END)
+    entry_library_number.delete(0, END)
+
+    membership_plan.set(plan_standard)
+    payment_plan.set(plan_monthly)
+
+    extra1.set(False)
+    extra2.set(False)
+    extra3.set(False)
+    extra4.set(False)
+
+    has_library_card.set(False)
+
+    label_total_cost_base.config(text="--")
+    label_total_cost_extras.config(text="--")
+    label_total_cost_discount.config(text="--")
+    label_total_cost_total.config(text="--")
+    label_total_cost_weekly.config(text="--")
+
+# ------------------------------
 # Submit Function
 # ------------------------------
 
@@ -252,57 +170,14 @@ def submit():
     mobile = entry_mobile.get()
     card = entry_library_number.get()
 
-    # Reset colours
-    entry_first_name.config(bg="white")
-    entry_last_name.config(bg="white")
-    entry_address.config(bg="white")
-    entry_mobile.config(bg="white")
-    entry_library_number.config(bg="white")
-
-    errors = False
-    empty_fields = []
-
-    if first.strip() == "":
-        entry_first_name.config(bg="red")
-        empty_fields.append("First name")
-        errors = True
-
-    if last.strip() == "":
-        entry_last_name.config(bg="red")
-        empty_fields.append("Last name")
-        errors = True
-
-    if address.strip() == "":
-        entry_address.config(bg="red")
-        empty_fields.append("Address")
-        errors = True
-
-    if mobile.strip() == "":
-        entry_mobile.config(bg="red")
-        empty_fields.append("Mobile")
-        errors = True
-    elif not mobile.isdigit():
-        entry_mobile.config(bg="red")
-        errors = True
-
-    if has_library_card.get():
-        if card.strip() == "":
-            entry_library_number.config(bg="red")
-            empty_fields.append("Library card number")
-            errors = True
-        elif not (card.isdigit() and len(card) == 5):
-            entry_library_number.config(bg="red")
-            messagebox.showwarning("Invalid Library Card", "Library card number must be exactly 5 digits.")
-            errors = True
-
-    if errors:
-        if empty_fields:
-            messagebox.showwarning("Error", "These fields are empty or invalid:\n" + "\n".join(empty_fields))
-        else:
-            messagebox.showwarning("Error", "Some fields contain invalid data.")
+    if first == "" or last == "" or address == "" or mobile == "":
+        messagebox.showwarning("Error", "Please fill all required fields.")
         return
 
-    # Insert into database
+    if has_library_card.get() and (not card.isdigit() or len(card) != 5):
+        messagebox.showwarning("Error", "Library card must be 5 digits.")
+        return
+
     cursor.execute("""
         INSERT INTO Memberships 
         (First_Name, Last_Name, Address, Mobile, Membership_Plan, Payment_Plan,
@@ -333,8 +208,6 @@ def open_membership_form():
 
     global entry_first_name, entry_last_name, entry_address, entry_mobile
     global entry_library_number
-    global label_total_cost_base, label_total_cost_extras, label_total_cost_discount
-    global label_total_cost_total, label_total_cost_weekly
 
     vcmd_name = (window.register(only_letters), "%P")
     vcmd_mobile = (window.register(only_numbers), "%P")
@@ -355,11 +228,6 @@ def open_membership_form():
     tk.Label(frame_personal, text="Mobile:*").grid(row=3, column=0, sticky="w")
     entry_mobile = tk.Entry(frame_personal, validate="key", validatecommand=vcmd_mobile)
     entry_mobile.grid(row=3, column=1, sticky="we")
-
-    entry_first_name.bind("<KeyRelease>", update_totals_key)
-    entry_last_name.bind("<KeyRelease>", update_totals_key)
-    entry_address.bind("<KeyRelease>", update_totals_key)
-    entry_mobile.bind("<KeyRelease>", update_totals_key)
 
     # MEMBERSHIP PLAN
     frame_membership = tk.LabelFrame(window, text="Membership Plan", padx=10, pady=10)
@@ -395,11 +263,12 @@ def open_membership_form():
     entry_library_number = tk.Entry(frame_library, validate="key", validatecommand=vcmd_card)
     entry_library_number.grid(row=1, column=1, sticky="we")
 
-    entry_library_number.bind("<KeyRelease>", update_totals_key)
-
     # TOTALS
     frame_totals = tk.LabelFrame(window, text="Totals", padx=10, pady=10)
     frame_totals.grid(row=3, column=0, columnspan=2, padx=10, pady=5, sticky="we")
+
+    global label_total_cost_base, label_total_cost_extras, label_total_cost_discount
+    global label_total_cost_total, label_total_cost_weekly
 
     tk.Label(frame_totals, text="Membership Cost:").grid(row=0, column=0, sticky="w")
     label_total_cost_base = tk.Label(frame_totals, text="--")
@@ -425,6 +294,7 @@ def open_membership_form():
     tk.Button(window, text="Calculate", command=calculate).grid(row=4, column=0, pady=10)
     tk.Button(window, text="Submit", command=submit).grid(row=4, column=1, pady=10)
     tk.Button(window, text="Reset", command=reset_form).grid(row=5, column=0, pady=10)
+
     tk.Button(window, text="Back to Menu", command=open_main_menu).grid(row=6, column=0, pady=20)
 
 # ------------------------------
