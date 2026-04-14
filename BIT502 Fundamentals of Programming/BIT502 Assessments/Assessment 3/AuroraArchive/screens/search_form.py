@@ -15,7 +15,9 @@ from data.database import fetch_all
 def open_search_form(window, clear_window, open_main_menu):
 
     clear_window()
-    window.geometry("650x550")
+    window.geometry("1300x600")
+
+
 
     # ------------------------------
     # Search Variables
@@ -37,9 +39,9 @@ def open_search_form(window, clear_window, open_main_menu):
         # ID search
         if var_id.get().strip() != "":
             if not var_id.get().isdigit():
-                messagebox.showwarning("Invalid ID", "ID must be a number.")
+                messagebox.showwarning("Invalid Member ID", "ID must be a number.")
                 return
-            query += " AND ID = ?"
+            query += " AND MemberID = ?"
             params.append(var_id.get())
 
         # Last name search (partial, case-insensitive)
@@ -105,7 +107,7 @@ def open_search_form(window, clear_window, open_main_menu):
 
     # Results Table
     columns = (
-        "ID", "First", "Last", "Address", "Mobile",
+        "MemberID", "First", "Last", "Address", "Mobile",
         "Plan", "Payment", "Book", "Private", "Booklet",
         "Ebook", "HasCard", "CardNum"
     )
@@ -117,9 +119,9 @@ def open_search_form(window, clear_window, open_main_menu):
         table.heading(col, text=col)
         table.column(col, width=100)
 
-    # Back button
+   # Back button
     tk.Button(
         window,
         text="Back to Menu",
         command=lambda: (clear_window(), open_main_menu())
-    ).pack(pady=10)
+    ).pack(pady=20)
