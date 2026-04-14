@@ -6,7 +6,6 @@
 
 # Main.py
 
-
 import tkinter as tk
 from tkinter import messagebox
 
@@ -52,16 +51,16 @@ def open_main_menu():
     tk.Label(window, text="Main Menu", font=("Arial", 20, "bold")).pack(pady=20)
 
     tk.Button(window, text="Membership Form", width=25,
-              command=lambda: open_membership_form(window, clear_window)).pack(pady=10)
+              command=lambda: open_membership_form(window, clear_window, open_main_menu)).pack(pady=10)
 
     tk.Button(window, text="Search Members", width=25,
-              command=lambda: open_search_form(window, clear_window)).pack(pady=10)
+              command=lambda: open_search_form(window, clear_window, open_main_menu)).pack(pady=10)
 
     tk.Button(window, text="Statistics", width=25,
-              command=lambda: open_statistics_form(window, clear_window)).pack(pady=10)
+              command=lambda: open_statistics_form(window, clear_window, open_main_menu)).pack(pady=10)
 
     tk.Button(window, text="Help", width=25,
-              command=lambda: open_help_screen(window, clear_window)).pack(pady=10)
+              command=lambda: open_help_screen(window, clear_window, open_main_menu)).pack(pady=10)
 
     tk.Button(window, text="Exit", width=25, command=window.destroy).pack(pady=20)
 

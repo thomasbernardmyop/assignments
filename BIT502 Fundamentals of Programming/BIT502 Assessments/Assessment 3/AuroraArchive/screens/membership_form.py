@@ -1,3 +1,9 @@
+#-------------------------------#
+#     BIT502 - Assessment 3     #
+#         Thomas Bernard        #
+#      Student ID 5142644       #
+#-------------------------------#
+
 import tkinter as tk
 from tkinter import messagebox
 from data.database import insert_member
@@ -21,7 +27,7 @@ def only_five_digits(value):
 # MEMBERSHIP FORM
 # ------------------------------
 
-def open_membership_form(window, clear_window):
+def open_membership_form(window, clear_window, open_main_menu):
 
     clear_window()
     window.geometry("550x700")
@@ -116,8 +122,7 @@ def open_membership_form(window, clear_window):
         lbl_total.config(text=f"${total:.2f}")
         lbl_weekly.config(text=f"${weekly:.2f}")
 
-
-    # ------------------------------
+           # ------------------------------
     # RESET FUNCTION
     # ------------------------------
 
@@ -205,6 +210,9 @@ def open_membership_form(window, clear_window):
         reset_form()
 
 
+    # ------------------------------
+    # UI LAYOUT
+    # ------------------------------
 
     # Personal Details
     frame_personal = tk.LabelFrame(window, text="Personal Details", padx=10, pady=10)
@@ -301,6 +309,11 @@ def open_membership_form(window, clear_window):
     tk.Button(window, text="Calculate", command=calculate).grid(row=4, column=0, pady=10)
     tk.Button(window, text="Submit", command=submit).grid(row=4, column=1, pady=10)
     tk.Button(window, text="Reset", command=reset_form).grid(row=5, column=0, pady=10)
-    tk.Button(window, text="Back to Menu",
-              command=lambda: clear_window() or window.after(10, window.master.open_main_menu)
-              ).grid(row=5, column=1, pady=10)
+
+    # Back Button
+    tk.Button(
+        window,
+        text="Back to Menu",
+        command=lambda: (clear_window(), open_main_menu())
+    ).grid(row=5, column=1, pady=10)
+

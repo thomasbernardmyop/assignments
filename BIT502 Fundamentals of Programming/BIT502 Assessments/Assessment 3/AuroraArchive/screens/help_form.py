@@ -7,12 +7,10 @@
 # help_form.py
 # This file contains the help screen for the application.
 
-
-
 import tkinter as tk
 
 
-def open_help_screen(window, clear_window):
+def open_help_screen(window, clear_window, open_main_menu):
 
     clear_window()
     window.geometry("550x500")
@@ -59,6 +57,9 @@ def open_help_screen(window, clear_window):
     label.pack(padx=20, pady=10, fill="both")
 
     # Back button
-    tk.Button(window, text="Back to Menu",
-              command=lambda: clear_window() or window.after(10, window.master.open_main_menu)
-              ).pack(pady=20)
+    tk.Button(
+        window,
+        text="Back to Menu",
+        command=lambda: (clear_window(), open_main_menu())
+    ).pack(pady=20)
+

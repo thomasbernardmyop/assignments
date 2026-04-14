@@ -12,7 +12,7 @@ from tkinter import ttk, messagebox
 from data.database import fetch_all
 
 
-def open_search_form(window, clear_window):
+def open_search_form(window, clear_window, open_main_menu):
 
     clear_window()
     window.geometry("650x550")
@@ -117,7 +117,9 @@ def open_search_form(window, clear_window):
         table.heading(col, text=col)
         table.column(col, width=100)
 
-    # Back Button
-    tk.Button(window, text="Back to Menu",
-              command=lambda: clear_window() or window.after(10, window.master.open_main_menu)
-              ).pack(pady=10)
+    # Back button
+    tk.Button(
+        window,
+        text="Back to Menu",
+        command=lambda: (clear_window(), open_main_menu())
+    ).pack(pady=10)
