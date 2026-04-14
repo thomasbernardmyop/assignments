@@ -13,7 +13,7 @@ import tkinter as tk
 def open_help_screen(window, clear_window, open_main_menu):
 
     clear_window()
-    window.geometry("550x500")
+    window.geometry("550x700")
 
     # Title
     tk.Label(window, text="The Aurora Archive - Help",
