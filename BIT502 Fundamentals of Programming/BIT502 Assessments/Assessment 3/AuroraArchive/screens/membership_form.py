@@ -122,7 +122,15 @@ def open_membership_form(window, clear_window, open_main_menu):
         lbl_total.config(text=f"${total:.2f}")
         lbl_weekly.config(text=f"${weekly:.2f}")
 
-           # ------------------------------
+   
+
+    def update_totals_key(event):
+        calculate()
+
+    def update_totals(*args):
+        calculate()
+
+    # ------------------------------
     # RESET FUNCTION
     # ------------------------------
 
@@ -226,18 +234,22 @@ def open_membership_form(window, clear_window, open_main_menu):
     tk.Label(frame_personal, text="First Name:*").grid(row=0, column=0, sticky="w")
     entry_first = tk.Entry(frame_personal, validate="key", validatecommand=v_letters)
     entry_first.grid(row=0, column=1, sticky="we")
+    entry_first.bind("<KeyRelease>", update_totals_key)
 
     tk.Label(frame_personal, text="Last Name:*").grid(row=1, column=0, sticky="w")
     entry_last = tk.Entry(frame_personal, validate="key", validatecommand=v_letters)
     entry_last.grid(row=1, column=1, sticky="we")
+    entry_last.bind("<KeyRelease>", update_totals_key)
 
     tk.Label(frame_personal, text="Address:*").grid(row=2, column=0, sticky="w")
     entry_address = tk.Entry(frame_personal)
     entry_address.grid(row=2, column=1, sticky="we")
+    entry_address.bind("<KeyRelease>", update_totals_key)
 
     tk.Label(frame_personal, text="Mobile:*").grid(row=3, column=0, sticky="w")
     entry_mobile = tk.Entry(frame_personal, validate="key", validatecommand=v_numbers)
     entry_mobile.grid(row=3, column=1, sticky="we")
+    entry_mobile.bind("<KeyRelease>", update_totals_key)
 
     # Membership Plan
     frame_membership = tk.LabelFrame(window, text="Membership Plan", padx=10, pady=10)
@@ -279,6 +291,16 @@ def open_membership_form(window, clear_window, open_main_menu):
     tk.Label(frame_library, text="Card Number:").grid(row=1, column=0, sticky="w")
     entry_card = tk.Entry(frame_library, validate="key", validatecommand=v_card)
     entry_card.grid(row=1, column=1, sticky="we")
+    entry_card.bind("<KeyRelease>", update_totals_key)
+
+    # Bind auto‑update to variables
+    membership_plan.trace_add("write", update_totals)
+    payment_plan.trace_add("write", update_totals)
+    extra1.trace_add("write", update_totals)
+    extra2.trace_add("write", update_totals)
+    extra3.trace_add("write", update_totals)
+    extra4.trace_add("write", update_totals)
+    has_library_card.trace_add("write", update_totals)
 
     # Totals
     frame_totals = tk.LabelFrame(window, text="Totals", padx=10, pady=10)
@@ -316,4 +338,3 @@ def open_membership_form(window, clear_window, open_main_menu):
         text="Back to Menu",
         command=lambda: (clear_window(), open_main_menu())
     ).grid(row=5, column=1, pady=10)
-
